@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* Overwrite Vertical Scrolling and Spacings */
+html, body {overflow-x: hidden !important; margin: 0; padding: 0 0 0 0 !important;}
+
+/* Standard Sizes for Logo  */
+.logo-sm {font-size: 20px; font-weight: 700;}
+.logo-md {font-size: 28px; font-weight: 700;}
+.logo-lg {font-size: 36px; font-weight: 700;}
+
+.fw-bold {font-weight: 700 !important; text-rendering: geometricPrecision;}
+
+/* Classes for Applying Fonts */
+.ff-sourcesans3 {
+  font-family: "Source Sans 3", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.ff-poppins {
+  font-family: "Poppins", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.ff-inter {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* Hide or View Items on different Screens */
+@media only screen and (min-width: 768px) {
+  .hide-lg {display: none !important;}
+}
+@media only screen and (max-width: 1000px) {
+  .hide-md {display: none !important;}
+}
+@media only screen and (max-width: 768px) {
+  .hide-sm {display: none !important;}
+}
+@media only screen and (max-width: 500px) {
+  .hide-xsm {display: none !important;}
+}
+
+/* for Web-Navigation Bar in Website (Breakpoint: 992px) */
+@media only screen and (max-width: 992px) {
+  .lg-screens {display: none !important;}
+  .sm-md-screens {display: block !important; }
+}
+@media only screen and (min-width: 992px) {
+  .lg-screens {display: block !important;}
+  .sm-md-screens {display: none !important;}
+}
+
+.flex-wrap {flex-wrap: wrap;}
+.flex-content {flex: content;}
+
+.hide, .hidden {display: none;}
+
+/* For Bottom Credits */
+@media only screen and (max-width: 1000px) {
+  .web-footer {margin-bottom: 0;}
+  .app-footer {margin-bottom: 80px !important;}
+}
+
+.rounded-corner-sm {border-radius: 8px}

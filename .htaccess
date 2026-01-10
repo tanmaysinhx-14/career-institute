@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Do NOT allow directory listing
+Options -Indexes
+
+# Exclude subdomain / utility folders
+RewriteCond %{REQUEST_URI} !^/(accounts|developer|shared|web)/
+
+# Rewrite everything to /web
+RewriteRule ^(.*)$ /web/$1 [L]
