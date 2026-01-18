@@ -1,60 +1,40 @@
 # =========================
-# Environment & secrets
+# Environment & Secrets
 # =========================
-.env
-.env.*
-credentials.env
-
-# Custom secret/config loaders
-encryption.php
-envLoader.php
+*.env
 
 # =========================
-# Dependency directories
+# Security & Sensitive Files
 # =========================
-/vendor/
-composer.phar
+shared/functions/security/keys.php
 
 # =========================
-# Runtime / cache / logs
+# Internal / Private Modules
 # =========================
-cache/
-tmp/
-temp/
-logs/
-*.log
+accounts/
+shared/functions/mail/
+shared/functions/utility/
+shared/functions/validation/
 
 # =========================
-# Uploaded files (if user-generated)
+# Server Configuration
 # =========================
-uploads/
-public/uploads/
+.htaccess
 
 # =========================
-# OS / Editor noise
+# OS / Editor Noise
 # =========================
 .DS_Store
 Thumbs.db
-.idea/
 .vscode/
-.history/
+.idea/
 
 # =========================
-# PHPUnit / testing
+# Logs & Cache
 # =========================
-.phpunit.result.cache
-coverage/
-build/
+*.log
 
 # =========================
-# Server / hosting artifacts
+# Allow placeholders
 # =========================
-.htaccess.bak
-*.pid
-
-# =========================
-# Ignore secrets anywhere
-# =========================
-**/credentials.env
-**/encryption.php
-**/envLoader.php
+!.gitkeep
