@@ -2,34 +2,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-/* Overwrite Vertical Scrolling and Spacings */
+
 html, body {overflow-x: hidden !important; margin: 0; padding: 0 0 0 0 !important;}
 
-/* Standard Sizes for Logo  */
+
 .logo-sm {font-size: 20px; font-weight: 700;}
 .logo-md {font-size: 28px; font-weight: 700;}
 .logo-lg {font-size: 36px; font-weight: 700;}
 
 .fw-bold {font-weight: 700 !important; text-rendering: geometricPrecision;}
 
-/* Classes for Applying Fonts */
-.ff-sourcesans3 {
-  font-family: "Source Sans 3", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-}
-.ff-poppins {
-  font-family: "Poppins", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-}
-.ff-inter {
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-}
+.ff-sourcesans3 {font-family: "Source Sans 3", sans-serif; font-optical-sizing: auto; font-style: normal;}
+.ff-poppins {font-family: "Poppins", sans-serif; font-optical-sizing: auto; font-style: normal;}
+.ff-inter {font-family: "Inter", sans-serif; font-optical-sizing: auto; font-style: normal;}
 
-/* Hide or View Items on different Screens */
 @media only screen and (min-width: 768px) {
   .hide-lg {display: none !important;}
 }
@@ -65,3 +51,54 @@ html, body {overflow-x: hidden !important; margin: 0; padding: 0 0 0 0 !importan
 }
 
 .rounded-corner-sm {border-radius: 8px}
+
+
+
+/* For Error Displaying */
+.toast-float {position: fixed; top: 5rem; right: 1.25rem; z-index: 1080; display: flex; flex-direction: column; gap: 0.75rem;}
+.toast-float .toast {display: block; min-width: 320px; max-width: 420px; border-radius: 0.75rem; box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18); overflow: hidden; opacity: 1; color: #ffffff;}
+.toast-float .toast-body {padding: 0.9rem 1.1rem; font-size: 0.92rem; line-height: 1.45;}
+.toast-float .btn-close {filter: invert(1); opacity: 0.65;}
+.toast-float .btn-close:hover {opacity: 1;}
+.toast-success { background-color: #198754; }
+.toast-danger  { background-color: #dc3545; }
+.toast-warning { background-color: #ffc107; color: #212529; }
+.toast-info    { background-color: #0dcaf0; color: #212529; }
+.toast-primary { background-color: #0d6efd; }
+
+
+@keyframes toast-slide-in {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-slide-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+.toast-float .toast {animation: toast-slide-in 0.45s ease-out forwards;}
+.toast-float .toast.toast-hide {animation: toast-slide-out 0.35s ease-in forwards;}
+
+
+
+/* For Attendance Viewer */
+.calendar-grid {display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px;}
+.weekday {text-align: center; font-size: 13px; font-weight: 600; color: #6b7280;}
+.date-cell {aspect-ratio: 1 / 1; border-radius: 10px; display: flex; align-items: flex-start; padding: 6px; font-size: 13px; color: white;}
+.date-cell.present {background-color: #2563eb;}
+.date-cell.absent {background-color: #dc2626;}
+.day-number {font-weight: 600; font-size: 20px;}
+.empty {background: transparent;}
+.date-cell.today {outline: 5px solid #ffa200; outline-offset: -2px;}

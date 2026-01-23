@@ -12,6 +12,7 @@ shared/functions/security/keys.php
 # Internal / Private Modules
 # =========================
 accounts/
+cron-jobs/
 shared/functions/mail/
 shared/functions/utility/
 shared/functions/validation/

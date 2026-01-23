@@ -1,13 +1,12 @@
 <?php
   // !!! Remember to use hex2bin() function for Secret Key and Secret Key must be 32 bytes long exactly !!!
   function encryptData($data, $secretKey) {
-    $key = hex2bin($secretKey);
     $iv = random_bytes(16);
 
     $encryptedData = openssl_encrypt(
       $data,
       'AES-256-CBC',
-      $key,
+      $secretKey,
       OPENSSL_RAW_DATA,
       $iv
     );

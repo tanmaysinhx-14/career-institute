@@ -1,13 +1,4 @@
 <?php
-  function getPDOParamType($value): int {
-    return match (gettype($value)) {
-      'boolean' => PDO::PARAM_BOOL,
-      'integer' => PDO::PARAM_INT,
-      'NULL'    => PDO::PARAM_NULL,
-      default   => PDO::PARAM_STR,
-    };
-  }
-
   function checkUserRecord(PDO $db, string $table, array $conditions): bool {
     try {
       $queryParts = [];
@@ -38,11 +29,16 @@
     for ($retryCount = 0; $retryCount < $maxRetries; $retryCount++) {
       try {
         $query = "SELECT * FROM `$tname` WHERE `$cname` = :cvalue LIMIT 1";
-        $stmt = $db->prepare($query);
+        $stmt  = $db->prepare($query);
 
-        $paramType = getPDOParamType($cvalue);
+        $paramType = match (gettype($cvalue)) {
+          'boolean' => PDO::PARAM_BOOL,
+          'integer' => PDO::PARAM_INT,
+          'NULL'    => PDO::PARAM_NULL,
+          default   => PDO::PARAM_STR,
+        };
+
         $stmt->bindValue(':cvalue', $cvalue, $paramType);
-
         $stmt->execute();
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -56,11 +52,12 @@
         sleep(5);
       }
     }
+
     return null;
   }
-
+  
   function fetchUserRecordsFromMultipleTables(PDO $db, array $tables, array $criteria): ?array {
-    $maxRetries = 3;
+    $maxRetries   = 3;
     $mergedResult = [];
 
     foreach ($tables as $table) {
@@ -78,7 +75,13 @@
           $stmt  = $db->prepare($query);
 
           foreach ($criteria as $col => $val) {
-            $stmt->bindValue(":$col", $val, getPDOParamType($val));
+            $paramType = match (gettype($val)) {
+              'boolean' => PDO::PARAM_BOOL,
+              'integer' => PDO::PARAM_INT,
+              'NULL'    => PDO::PARAM_NULL,
+              default   => PDO::PARAM_STR,
+            };
+            $stmt->bindValue(":$col", $val, $paramType);
           }
 
           $stmt->execute();
@@ -87,8 +90,9 @@
           if (!empty($results)) {
             foreach ($results as $row) {
               foreach ($row as $col => $val) {
-                if ($col === '_source_table') continue;
-
+                if ($col === '_source_table') {
+                  continue;
+                }
                 if (!array_key_exists($col, $mergedResult) || empty($mergedResult[$col])) {
                   $mergedResult[$col] = $val;
                 }
@@ -98,8 +102,7 @@
           }
 
           break;
-        } 
-        catch (Exception) {
+        } catch (Exception) {
           $retryCount++;
           if ($retryCount < $maxRetries) {
             sleep(5);
@@ -109,10 +112,6 @@
     }
 
     return !empty($mergedResult) ? $mergedResult : null;
-  }
-
-  function checkUserRole($userRole) {
-    return $_SESSION['userRole'] = $userRole;
   }
 
   function retrieveActiveBatchlist(PDO $db) {
